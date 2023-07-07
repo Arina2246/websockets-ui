@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "module": "ESNext",
+      "moduleResolution": "Node",
+      "allowJs": true,
+      "esModuleInterop": true,
+      "declaration": true,
+      "emitDeclarationOnly": true,
+      "allowImportingTsExtensions": true,
+      "target": "es6",
+      "sourceMap": true,
+      "outDir": "dist",
+    },
+    "ts-node": {
+      "esm": true,
+      "experimentalSpecifierResolution": "node",
+  },
+    "lib": ["es2015"]
+  }

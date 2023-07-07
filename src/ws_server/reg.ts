@@ -1,6 +1,11 @@
-import { users } from '../db/db.js';
+import { users } from '../db/db.ts';
+import { WSdata } from '../types/types.ts';
 
-const updateDB = (ws, data, { error, text }) => {
+const updateDB = (
+  ws,
+  data: WSdata,
+  errorObj: { error: boolean; text: string }
+) => {
   let userIndex = users.length;
   const user = {
     ws: ws,
@@ -8,12 +13,12 @@ const updateDB = (ws, data, { error, text }) => {
     index: userIndex,
     password: JSON.parse(data.data).password,
   };
-  if (!error) users.push(user);
+  if (!errorObj.error) users.push(user);
   return userIndex;
 };
 
-const validateUser = (data) => {
-  let searchTerm = JSON.parse(data.data).name;
+const validateUser = (data: WSdata) => {
+  let searchTerm: string = JSON.parse(data.data).name;
   let userName = users.find((user) => user.name === searchTerm);
   if (userName) {
     return { error: true, text: 'User with this name is already exists' };
@@ -22,7 +27,7 @@ const validateUser = (data) => {
   }
 };
 
-export const registration = (ws, dataWS) => {
+export const registration = (ws, dataWS: WSdata) => {
   const error = validateUser(dataWS);
   const userIndex = updateDB(ws, dataWS, error);
   const data = {

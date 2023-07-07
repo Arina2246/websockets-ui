@@ -1,9 +1,10 @@
-import { rooms } from '../db/db.js';
-import { users } from '../db/db.js';
+import { rooms } from '../db/db.ts';
+import { users } from '../db/db.ts';
+import { Room } from '../types/types.ts';
 
-const updateDB = (name, index) => {
+const updateDB = (name: string, index: number) => {
   let roomIndex = rooms.length;
-  const data = {
+  const data: Room = {
     roomId: roomIndex,
     roomUsers: [
       {
